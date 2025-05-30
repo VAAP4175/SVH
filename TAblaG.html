@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agenda de Sala de Cómputo</title>
+  <style>
+ body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  
+}
+
+header, footer {
+  background-color: #030059;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  color: #ffffff;
+  
+}
+header p{
+  color: rgb(255, 255, 255);
+}
+main {
+  padding: 1rem;
+}
+
+.calendario table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.calendario th, .calendario td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.calendario th {
+  background-color: #e0e0e0;
+}
+
+.bloque {
+  cursor: pointer;
+  background-color: #c0dbb5;
+  transition: background-color 0.3s ease;
+}
+
+.bloque.ocupado {
+  background-color: #ee6969;
+  cursor: not-allowed;
+}
+
+#formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#formulario textarea {
+  resize: vertical;
+}
+
+#formulario menu {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+#formulario button {
+  padding: 0.5rem 1rem;
+}
+
+#botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #003366;
+  border: 1px solid #003366;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+#botones button {
+  padding: 10px 20px;
+  background-color: #da790a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#botones button:hover {
+  background-color: #b76e01;
+}
+
+#rango-semana {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+#formulario {
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  background: white;
+
+}
+
+#formulario::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.pasado {
+  background-color: #ffd448; /* amarillo suave */
+  color: #856404;
+  font-weight: bold;
+  text-align: center;
+}
+.bloque {
+  text-align: center;
+}
+
+.disponible {
+  background-color: #b1eebf;
+  color: #48b361;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.ocupado {
+  background-color: #f85765;
+  color: #ffdbde;
+  font-weight: bold;
+  text-align: center;
+}
+
+.pasado {
+  background-color: #fae190;
+  color: #c49c24;
+  font-weight: bold;
+  text-align: center;
+}
+
+.intermedio {
+  background-color: #ececff;
+  color: #7f7f80;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+  </style>
+</head>
+<body>
+
+    
+    <div id="botones" style="background-color: #030059;">
+      <button id="semana-anterior">← Semana anterior</button>
+      <span id="rango-semana" ></span>
+      <button id="semana-siguiente">Semana siguiente →</button>
+    </div>
+ 
+
+  <main>
+    <section class="calendario">
+      <table>
+        <thead>
+          <tr>
+            <th>Horario</th>
+            <th>Lunes</th>
+            <th>Martes</th>
+            <th>Miércoles</th>
+            <th>Jueves</th>
+            <th>Viernes</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-bloques">
+          <!-- Las filas se generan dinámicamente -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <dialog id="formulario">
+    <form method="dialog">
+      <h2>Reservar Sala de Computo</h2>
+      <p id="info-horario"></p>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required>
+      <label for="motivo">Motivo:</label>
+      <textarea id="motivo" required></textarea>
+      <menu>
+        <button type="button" id="cancelar">Cancelar</button>
+        <button type="button" id="guardar">Guardar</button>
+      </menu>
+    </form>
+  </dialog>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
